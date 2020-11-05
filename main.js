@@ -20,12 +20,15 @@ app.get('/', async (req, res) => {
     let ts = new Date().getTime();
     let hash = md5(ts + process.env.PRIVATE_KEY + process.env.PUBLIC_KEY);
     let apiPath = MARVEL_DEV_BASEURL + '/v1/public/characters';
+
+    let offset = parseInt(req.query['offset']) || 0;
     
     const url = withQuery(apiPath, {
         ts,
         apikey: process.env.PUBLIC_KEY,
         hash,
-        limit: LIMIT
+        limit: LIMIT,
+        offset
     }) 
 
     fetch(url).then(results => {
@@ -43,7 +46,10 @@ app.get('/', async (req, res) => {
             res.status(200);
             res.type('text/html');
             res.render('marvelchars', {
-                marvelChars: results.data.results
+                marvelChars: results.data.results,
+                offset,
+                prevOffset: Math.max(0, offset - LIMIT),
+                nextOffset: offset + LIMIT
             })
         }
     })

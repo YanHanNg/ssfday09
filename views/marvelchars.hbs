@@ -22,5 +22,15 @@
             </div>
             {{/each}}
         </div>
+        <div class="d-flex justify-content-between">
+            <form action="/" method="get">
+                <input type="hidden" name="offset" value={{prevOffset}}>
+                <button type="submit" class="btn btn-danger" {{#if offset}} {{else}} disabled {{/if}}>PREV</button>
+            </form>
+            <form action="/" method="get">
+                <input type="hidden" name="offset" value={{nextOffset}}>
+                <button type="submit" class="btn btn-success">NEXT</button>
+            </form>       
+        </div>  
     </div>
 </div>
