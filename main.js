@@ -14,6 +14,7 @@ app.set('view engine', 'hbs');
 const PORT = parseInt(process.env.PORT) || 3000;
 
 const MARVEL_DEV_BASEURL = 'https://gateway.marvel.com';
+const LIMIT = 90;
 
 app.get('/', async (req, res) => {
     let ts = new Date().getTime();
@@ -24,7 +25,7 @@ app.get('/', async (req, res) => {
         ts,
         apikey: process.env.PUBLIC_KEY,
         hash,
-        limit: 99
+        limit: LIMIT
     }) 
 
     fetch(url).then(results => {
