@@ -1,0 +1,26 @@
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            {{#each marvelChars}}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="{{this.thumbnail.path}}.{{this.thumbnail.extension}}" alt="marvelImage" height="300px">
+                    <div class="card-body card-mod">
+                        <p class="card-text"><span>{{this.name}}</span></p>
+                        <p class="card-text"><span>{{this.description}}</span></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{{this.urls.[0].url}}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                                <a href="/get/{{this.id}}/comics"><button type="button" class="btn btn-sm btn-outline-secondary">Comics</button></a>
+                                <a href="/get/{{this.id}}/events"><button type="button" class="btn btn-sm btn-outline-secondary">Events</button></a>
+                                <a href="/get/{{this.id}}/series"><button type="button" class="btn btn-sm btn-outline-secondary">Series</button></a>
+                                <!-- <a href="/get/{{this.id}}/stories"><button type="button" class="btn btn-sm btn-outline-secondary">Stories</button></a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
